@@ -6,9 +6,10 @@
 
 Papers:
 
-[RANLP paper](http://maksimeremeev.com/files/eremeev19complexity.pdf),
+[RANLP paper](http://maksimeremeev.com/files/eremeev19complexity.pdf), [Overview in Russian](maksimeremeev/files/voron19complexity.pdf)
 
-[Overview in Russian](maksimeremeev/files/voron19complexity.pdf)
+Interactive Demo:
+[TextComplexity.net](http://TextComplexity.net)
 
 This is a framework for testing and experimenting with complexity measures, building and saving models fitted on various reference collections.
 The library provides efficient parallel processing of reference collections.
@@ -35,39 +36,17 @@ python setup.py install
 1. Implement the basic ```ComplexityModel``` class
 2. Parallelization of ```fit``` method
 3. Letter, Syllable, and Word Tokenizers for Russian
-   - tokenizers:
-      - ```letter_tokenizer```, ```word_tokenizer```, ```ru_syllab_tokenizer```
 4. Distance-based ComplexityFunction
-   - functions:
-     - ```distance_cf```
 5. Morphological and Lexical complexity models
-   - models:
-     - ```letters```, ```lexical-distance```,  ```ru-syllab-sorted```, ```ru-syllab```
 6. Counter-based ComplexityFunction
-   - functions:
-     - ```counter_cf```, ```length_cf```
 7. Counter-based models
-   - models:
-     - ```lexial-length```, ```lexical-counter```
 8. Adaptation of morphological models for English
-   - tokenizers:
-     - ```en_syllab_tokenizer```, ```en_syllab_sorted_tokenizer```
-   - models:
-     - ```en-syllab```, ```en-syllab-sorted```
 9. Syntax models based on UdPipe
-   - tokenizers:
-     - ```udpipe_wrapper```, ```udpipe_tokenizer```, ```udpipe_tokenizer_pos```, ```en_sentence_tokenizer```, ```ru_sentence_tokenizer```
-   - functions:
-     - ```syntax_length_cf```
-   - models:
-     - ```syntax-length```, ```syntax-pos```
 10. Making preprocessing more flexible
-    - tokenizers:
-      - ```preprocessor```
 11. ```setup.py``` and testing on Ubuntu, OSX
 12. Publishing the Open-Source framework
 
-==== You are here ====
+*==== You are here ====*
 
 13. Publishing the ```ComplexityPipeline``` implementation to fit the aggregated complexity model
 14. Publishing of distributions for all proposed models and validation data
@@ -161,9 +140,7 @@ cm.fit('/wikipedia', n_jobs=10, use_preproc=False, use_stem=False, use_lemm=Fals
 
 **Predict**
 
-```predict(texts, gamma=0.95, weights='mean', p=1, use_preproc=True, use_stem=True, use_lemm=False,
-           check_length=True, check_stopwords=True, exp_weights=False,
-           weights_min_shift=False, normalize=False, return_token_complexities=False)```
+```predict(texts, gamma=0.95, weights='mean', p=1, use_preproc=True, use_stem=True, use_lemm=False, check_length=True, check_stopwords=True, exp_weights=False, weights_min_shift=False, normalize=False, return_token_complexities=False)```
 
 1. ```texts``` - lexts to estimate complexity scores for
 2. ```gamma``` - quantile indicator. Default: 0.95
