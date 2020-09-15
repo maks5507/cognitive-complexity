@@ -89,7 +89,7 @@ class ComplexityModel:
     @staticmethod
     def __split_collection(reference_corpus_path, n_jobs):
         files = [filename for filename in Path(reference_corpus_path).rglob('*.txt')]
-        chunks = np.array_split(files, n_jobs)
+        chunks = np.array_split(list(files), int(n_jobs))
         return chunks
 
     @staticmethod
@@ -139,7 +139,7 @@ class ComplexityModel:
             queue = multiprocessing.Queue()
             chunks = self.__split_collection(reference_corpus, n_jobs)
             for chunk in chunks:
-                processes += [multiprocessing.Process(target=self._build_distribution,
+                processes += [multiprocessing.Process(target=self.__build_distribution,
                                                       args=[chunk, queue, self.tokenizer,
                                                             self.complexity_function,
                                                             self.alphabet, use_preproc, use_stem,
@@ -147,7 +147,7 @@ class ComplexityModel:
                 processes[-1].start()
 
             chunk_distributions = []
-            for i in range(n_jobs):
+            for i in range(int(n_jobs)):
                 chunk_distributions += [queue.get()]
 
             for process in processes:
