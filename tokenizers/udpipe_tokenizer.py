@@ -29,9 +29,9 @@ class UdPipeTokenizer:
                                       int(parsed[6]) - 1))
         return sentences
 
-    def tokenize(self, text):
+    def tokenize(self, text, use_preproc=False, use_stem=False, use_lemm=False, check_length=False,
+                 check_stopwords=False):
         sentences = self.model.tokenize(text)
-        print(sentences)
         for s in sentences:
             self.model.tag(s)
             self.model.parse(s)
